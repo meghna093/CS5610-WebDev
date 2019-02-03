@@ -1,0 +1,33 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= if @current_user do %>
+    <%= hidden_input f, :crt_id, value: @current_user.id, class: "form-control" %>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :description, class: "control-label" %>
+    <%= textarea f, :description, class: "form-control" %>
+    <%= error_tag f, :description %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :assignedTo, class: "control-label" %>
+    <%= select f, :user_id, @usr_list, class: "form-control" %>
+    <%= error_tag f, :user_id %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit Task", class: "btn btn-primary" %>
+  </div>
+<% end %>

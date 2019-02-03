@@ -1,0 +1,31 @@
+<div class="lobby clogin" >
+  <div class="tbmg v3">
+    <div class="tbmg-head">
+      <table><thead>
+        <tr><th class="col1">GameID</th>
+            <th class="col2">Opponents</th>
+            <th class="col3">Viewers</th> 
+            <th class="col4">Action</th></tr>
+      </thead></table>
+    </div>
+    <div>
+      <table><tbody><%= for {name, state} <- @games do %>
+        <tr><td class="col1"><%= name %></td>
+            <%= if Kernel.length(state.players) == 1 do %>
+              <td class="col2"><%= List.first(state.players) %> has joined. Waiting for second player</td>
+            <% else %>
+              <td class="col2"><%= List.first(state.players) %> v/s <%= List.last(state.players) %></td>
+            <% end %>
+            <td class="col3"><%= Kernel.length(state.speculators) %></td>
+            <td class="col4">
+            <%= if Kernel.length(state.players) < 2 || Enum.member?(state.players, @current_user) do %>
+              <span><%= link "Play", to: page_path(@conn, :game, name)%></span>
+            <% else %>
+              <span><%= link "View", to: page_path(@conn, :game, name)%></span>
+            <% end %>
+        </td></tr>
+      <% end %>
+      </tbody></table>
+    </div>
+  </div>
+</div>

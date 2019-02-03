@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<title>Web Development</title>
+<meta charset="UTF-8">
+<style>
+.center{text-align: center;}
+.left-align{width:33%;
+	float:left;}
+.right-align{width:66%;
+	float:left;
+	padding:2px;}
+#lorem{display:none;}
+#bottle{display:none;}
+#last{display:none;}
+.content{margin-bottom:400px;}
+</style>
+</head>
+<body onload="lorem()">
+	<div class="Main">
+		<h1 class="center">HW02 Task Three</h1>
+		<div class="left-align">
+			<ol><li><a href="#lorem" onClick="lorem()">Lorem Ipsem</a></li>
+				<li><a href="#bottle" onClick="bottle()">99 Bottles</a></li>
+				<li><a href="#last" onClick="last()">Last Thing</a></li>
+			</ol></div>
+			<div class="right-align">
+				<div id="lorem"><p>
+					In publishing and graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation. Replacing meaningful content with placeholder text allows designers to design the form of the content before the content itself has been produced.</p>
+					<p>The lorem ipsum text is typically a scrambled section of De finibus bonorum et malorum, a 1st-century BC Latin text by Cicero, with words altered, added, and removed to make it nonsensical, improper Latin.</p>
+					<p>A variation of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popularized by advertisements for Letraset transfer sheets. It was introduced to the Information Age in the mid-1980s by Aldus Corporation, which employed it in graphics and word-processing templates for its desktop publishing program PageMaker.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+
+				<div id="bottle"><p>99 bottles of beer on the wall, 99 bottles of beer<br>Take one down, pass it around, 98 bottles of beer on the wall...</p>
+					<p>98 bottles of beer on the wall, 98 bottles of beer<br>Take one down, pass it around, 97 bottles of beer on the wall...</p>
+					<p>97 bottles of beer on the wall, 97 bottles of beer<br>Take one down, pass it around, 96 bottles of beer on the wall...</p>
+					<p>96 bottles of beer on the wall, 96 bottles of beer<br>Take one down, pass it around, 95 bottles of beer on the wall...</p></div>
+				<div id="last"><p>This is the third thing</p></div></div>
+			<div class="clear"></div>
+	</div>
+
+
+<script>
+function lorem(){
+	document.getElementById("lorem").style.display="block";
+	document.getElementById("bottle").style.display="none";
+	document.getElementById("last").style.display="none";}
+	function bottle(){
+	document.getElementById("lorem").style.display="none";
+	document.getElementById("bottle").style.display="block";
+	document.getElementById("last").style.display="none";}
+	function last(){
+	document.getElementById("lorem").style.display="none";
+	document.getElementById("bottle").style.display="none";
+	document.getElementById("last").style.display="block";}
+</script>
+</body>
+</html>

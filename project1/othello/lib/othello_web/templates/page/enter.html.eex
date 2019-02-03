@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+<body>
+  <%= form_tag("/session", method: :post) do %>
+   <div><div class="clogin"><div class="wlogin">
+          <form><span class="tlogin">LogIn</span>
+                <div data-validate = "Enter login name">
+                <input class="inData" type="text" name="user_name" placeholder="PlayerName" required> 
+                </div>
+                <div>
+                  <input type="hidden" name="game" value="<%= @game %>">
+                </div>
+                <div>
+                  <button class="flogin">Login</button>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% end %>

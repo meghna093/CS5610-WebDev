@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<title>Web Development</title>
+<meta charset="UTF-8">
+<style>
+.button:hover {box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	background-color: #aaa;
+	border-radius: 12px;}
+</style>
+	</head>
+	<body>
+		<h1 id="pop">10</h1>
+		<button name="alertbutton" onclick="alertbtn()" class="button">Alert</button>
+		<button name="add" onclick="add()" class="button">Increment</button>
+		<button name="append" onclick="append()" class="button">Append</button><br>
+		<div id="end">
+		</div>
+
+		<script>
+function alertbtn()
+{alert(document.getElementById("pop").innerHTML);}
+
+function add()
+{var val=document.getElementById("pop").innerHTML;
+	document.getElementById("pop").innerHTML=parseInt(val)+1;}
+
+	function append()
+{var number=document.getElementById("pop").innerHTML;
+	var position=document.getElementById("end");
+	var element=document.createElement("p");
+	var node=document.createTextNode(number);
+	element.appendChild(node);
+	position.appendChild(element);}
+		</script>
+
+
+	</body>
+</html>
+

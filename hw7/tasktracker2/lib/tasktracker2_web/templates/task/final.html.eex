@@ -1,0 +1,42 @@
+<script type="text/javascript">
+  window.begin_path = "<%= timeblock_path(@conn, :index) %>";
+  window.task_id = "<%= @task.id %>"
+</script>
+
+<h4>Task Title: <%= @task.title %></h4>
+<h4>Task Description: <%= @task.description %></h4>
+<div class="form-group"><label>Task Start Time (Input Format: YYYY-MM-DD HH:MM:SS)</label>
+  <input class="form-control" id="begin-time">
+</div>
+<div class="form-group"><label>Task End Time (Input Format: YYYY-MM-DD HH:MM:SS)</label>
+  <input class="form-control" id="fin-time">
+</div>
+<div id="time-warning">
+</div>
+  <button onclick="time_blk()" class="btn btn-primary">Insert Timeblock</button><p></p>
+<br/>
+<button class="btn btn-primary"  id="begin-bttn" data-begin="false">Start Working</button>
+<p></p>
+<h3>Task Log</h3>
+<div id="ed-blk">
+</div>
+<div id="warning">
+</div>
+<table class="table"><thead><tr><th>Task Start Time</th>
+  <th>Task End Time</th>
+  <th>Time Taken</th>
+  <th></th></tr></thead>
+  <tbody id="blks"><%= for timeblock <- @task.timeblocks do %>
+    <tr id = "<%= "b"<>Integer.to_string(timeblock.id) %>" class="blk-row">
+        <% endTime=Integer.floor_div(timeblock.endTime,1000)%>
+        <% {:ok,fin_ISO}=DateTime.from_unix(endTime)%>
+        <% startTime=Integer.floor_div(timeblock.startTime,1000)%>
+        <% {:ok,begin_ISO}=DateTime.from_unix(startTime)%>
+        <th><%= begin_ISO %></th>
+        <th><%= fin_ISO %></th>
+        <th><%= Integer.floor_div((endTime-startTime),60) %> minutes</th></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= render "final_form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
+<span><%= link "Back", to: task_path(@conn, :index) %></span>

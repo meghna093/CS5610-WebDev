@@ -1,0 +1,20 @@
+<h2>Task Detail</h2>
+
+<ul><ul><strong>Task Title:</strong>
+        <%= @task.title %>
+    </ul>
+    <ul><strong>Task Description:</strong>
+        <%= @task.description %>
+    </ul>
+    <ul><strong>Task Creater:</strong>
+        <%= @task.crt.name %>
+    </ul>
+    <ul><strong>Task AssignedTo:</strong>
+        <%= @task.user.name %>
+    </ul>
+</ul>
+
+<%= if @current_user.id == @task.crt_id do %>
+<div><%= link "Edit Task", to: task_path(@conn, :edit, @task) %> |
+<% end %>
+<%= link "Back", to: task_path(@conn, :index) %></div>

@@ -1,0 +1,9 @@
+<h2>Edit Assignment</h2>
+<%= form_for @changeset, assignment_path(@conn, :update), fn f -> %>
+<label>Assignment_Time: <%= number_input f, :time %></label>
+<%= hidden_input f, :task_id %>
+<%= hidden_input f, :user_id %>
+<%= hidden_input f, :id %>
+<%= submit "Assignment Update" %>
+<% end %>
+<span><%= link "TaskPage", to: task_path(@conn, :show, @task_id) %></span>

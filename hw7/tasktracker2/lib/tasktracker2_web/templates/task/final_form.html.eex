@@ -1,0 +1,15 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+  <%= hidden_input f, :title, value: @task.title, class: "form-control" %>
+  <%= hidden_input f, :crt_id, value: @task.crt_id, class: "form-control" %>
+  <%= hidden_input f, :user_id, value: @task.user_id, class: "form-control" %>
+  <%= hidden_input f, :description, value: @task.description, class: "form-control" %>
+  <%= hidden_input f, :time, value: @time, class: "form-control" %>
+  <div class="form-group">
+    <%= submit "Complete", class: "btn btn-success" %>
+  </div>
+<% end %>

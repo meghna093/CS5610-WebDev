@@ -1,0 +1,13 @@
+<h2>Show Assignment</h2>
+
+<ul>
+
+  <li>
+    <strong>Time:</strong>
+    <%= @assignment.time %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: assignment_path(@conn, :edit, @assignment) %></span>
+<span><%= link "Back", to: assignment_path(@conn, :index) %></span>

@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col">
+    <h2>Home Page</h2>
+    <ul><ul><strong>Name:</strong>
+            <%= @user.name %>
+        </ul>
+        <ul><strong>Email:</strong>
+            <%= @user.email %>
+        </ul>
+        <ul><strong>Manager:</strong>
+            <%= if @user.mgr do %>
+            <%=  @user.mgr.name %>
+            <% end %>
+        </ul>
+        <ul><strong>Underlings:</strong>
+            <ul><%= for underling <- @user.underlings do %>
+                <li><%= underling.name %></li>
+                <% end %></ul></ul></ul>
+<p></p>
+<h2>Assigned Tasks</h2>
+  <table class="table"><thead><tr>
+    <th>Task Title</th>
+    <th>AssignedTo</th>
+    <th>Task Status</th>
+    <th>Time Taken</th>
+    <th></th>
+    </tr>
+   </thead>
+   <tbody>
+    <%= for task <- @tasks do %>
+        <tr><td><%= task.title %></td>
+          <td><%= if task.user_id == @current_user.id do %>
+              <id="notice"><%= task.user.name %>
+            <% else %>
+              <%= task.user.name %>
+            <% end %>
+          </td>
+          <td id="status">
+            <%= if task.time do %>
+              Completed
+            <% else %> In-Progress
+            <% end %>
+          </td>
+          <td>
+          <%= if task.time do %>
+            <span><%= task.time %></span><span> minutes</span>
+          <% else %> NA
+          <% end %>
+          </td>
+          <td class="text-right"><%= if @current_user.id == task.user_id do %>
+            <span><%= link "Complete", to: task_done_path(@conn, :done, task), class: "btn btn-default btn-xs" %></span><% end %>
+            <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
+            <%= if @current_user.id == task.crt_id do %><span><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
+            <span><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+            <% end %></td></tr><% end %></tbody>
+</table>
+<div><%= if @current_user.id == @user.id do %>
+       <%= button "New Task", to: task_path(@conn, :new), method: :get, class: "btn btn-primary " %>
+    <% end %></div>
+<div>
+<p></p>
+<%= button "Edit", to: user_path(@conn, :edit, @user), method: :get, class: "btn btn-primary" %>
+
+<%= button "Back", to: task_path(@conn, :index), method: :get, class: "btn btn-primary" %></div>
+</div>
+</div>

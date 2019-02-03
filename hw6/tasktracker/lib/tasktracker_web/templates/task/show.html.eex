@@ -1,0 +1,42 @@
+<div class="row">
+<div class="col-1">
+<%= link "Edit Task", to: task_path(@conn, :edit, @task) %>
+</div>
+<div class="col-1">
+<%= link "Assign", to: assignment_path(@conn, :new, @task.id) %>
+</div>
+</div>
+<p> </p>
+<h2>Task Detail</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+</ul>
+
+<%= if !Enum.empty?(@assignments) do %>
+<h3>Assignments</h3>
+<table class="table">
+<thead><tr><td>User Name</td>
+<td>Assignment Time</td><td></td><td></td>
+</tr></thead><tbody>
+<%= for assignment <- @assignments do %>
+<tr><td><%= assignment.user.name %></td>
+<td><%= assignment.time %></td>
+<td><span><%= link "Change Time", to: assignment_path(@conn, :edit, assignment, task_id: @task.id) %></span></td>
+<td><span><%= link "Completed", to: assignment_path(@conn, :delete, assignment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span></td></tr>
+<% end %></tbody></table><% end %>
+<div class="col-1">
+<span><%= link "Task Page", to: task_path(@conn, :index) %></span>
+</div>
+
+

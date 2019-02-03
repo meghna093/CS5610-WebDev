@@ -1,0 +1,19 @@
+<h2>New Assignment</h2>
+
+<table class="table">
+<tbody>
+<%= for user <- @users do %>
+<tr><td><%= user.id %></td>
+<td><%= user.name %></td></tr>
+<% end %></tbody>
+<thead><tr>Users</tr>
+<tr><td>Id</td><td>Name</td></tr>
+</thead>
+</table>
+<%= form_for @changeset, assignment_path(@conn, :create), fn f -> %>
+<label>ID: <%= text_input f, :user_id %></label>
+<label>Assignment_Time: <%= number_input f, :time%></label>
+<%= hidden_input f, :task_id,value: @task_id %><%= submit "Assign" %><% end %>
+
+
+<span><%= link "Back", to: task_path(@conn, :show, @task_id) %></span>
